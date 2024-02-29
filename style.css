@@ -6,7 +6,7 @@
 .letter {
     
     border: 3px solid lightgrey;
-    border-radius:3px;
+    border-radius:5px;
     height: 100px;
     width: 100px;
     max-width: 100px;
@@ -14,8 +14,8 @@
     margin: 10px;
     overflow: hidden;
     background-color: red;
-
     font-size: 40px;
+    font-family: 'Helvetica', 'Gotham', 'Arial';
     background-color:red;
     text-align:center;
     line-height: 90px; /* no idea why this vertically centers it :( */
