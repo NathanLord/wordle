@@ -1,3 +1,7 @@
+.placeholder {
+    display: none;
+    visibility: hidden;
+}
 .word {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
@@ -13,11 +17,11 @@
     min-height: 100px;
     margin: 10px;
     overflow: hidden;
-    background-color: red;
+    background-color:brown;
     font-size: 40px;
     font-family: 'Helvetica', 'Gotham', 'Arial';
-    background-color:red;
     text-align:center;
+    text-transform:capitalize;
     line-height: 90px; /* no idea why this vertically centers it :( */
 }
 
@@ -28,3 +32,4 @@
     height: 100px;
     border: 1px solid black;
 }
+

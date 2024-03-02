@@ -5,100 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Team Wordle</title>
     <link rel="stylesheet" href="style.css">
-    <script defer src="client.js"></script>
+    <script defer type="module" src="client.js"></script>
     
 </head>
+<!--PLACEHOLDER-->
+<span class="letter placeholder" id="letterPlaceholder"></span>
+<!--PLACEHOLDER-->
 <body>
     <!--- I will text if done soon---> 
-    <p>Guess a 5 letter word. Grey means letter is not in word. Green means letter is in correct spot.  Yellow means there is the right lette r</p>
+    <p>Guess the word in 5 guesses. Grey means letter is not in word. Green means letter is in correct spot. Yellow means there is the right letter</p>
+    <p>How many letters would you like the word to be? Has to be between 4 and 8</p>
+    <input type="number" min="4" max="8" id="balls">
+
     <div id="gameArea">
-        <div class="word">
-            <span id="letter1" class="letter">
-                
-            </span>
-            <span id="letter2" class="letter">
-                
-            </span>
-            <span id="letter3" class="letter">
-                
-            </span>
-            <span id="letter4" class="letter">
-                
-            </span>
-            <span id="letter5" class="letter">
-                
-            </span>
+        <div class="word"> 
         </div>
         <div class="word">
-            <span class="letter">
-                
-            </span>
-            <span class="letter">
-                
-            </span>
-            <span class="letter">
-                
-            </span>
-            <span class="letter">
-                
-            </span>
-            <span class="letter">
-                
-            </span>
         </div>
         <div class="word">
-            <span class="letter">
-                
-            </span>
-            <span class="letter">
-                
-            </span>
-            <span class="letter">
-                
-            </span>
-            <span class="letter">
-                
-            </span>
-            <span class="letter">
-                
-            </span>
-        </div><div class="word">
-            <span class="letter">
-                
-            </span>
-            <span class="letter">
-                
-            </span>
-            <span class="letter">
-                
-            </span>
-            <span class="letter">
-                
-            </span>
-            <span class="letter">
-                
-            </span>
-        </div><div class="word">
-            <span class="letter">
-                
-            </span>
-            <span class="letter">
-                
-            </span>
-            <span class="letter">
-                
-            </span>
-            <span class="letter">
-                
-            </span>
-            <span class="letter">
-                
-            </span>
+        </div>
+        <div class="word">
+        </div>
+        <div class="word">
         </div>
         
     </div>
     <div>
-
     </div>
 </body>
 </html>
