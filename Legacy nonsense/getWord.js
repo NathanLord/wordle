@@ -61,3 +61,47 @@ for(let i = 4; i<9; i++){
     fs.writeFileSync(fileName, wordsOfLength.join('\n'));
 }
 
+
+// TODO Opens file and gets a random word from it 
+function getRandomWordFromFile(fileName) {
+    // Open the file and read it as a variable
+    const file = new XMLHttpRequest();
+    file.open("GET", fileName, false);
+    file.onreadystatechange = function() {
+      if (file.readyState === 4 && file.status === 200) {
+        const lines = file.responseText.split("\n");
+        // Get a random word from the file
+        const randomWord = lines[Math.floor(Math.random() * lines.length)];
+        // Return the random word
+        return randomWord;
+      }
+    }
+    file.send(null);
+    
+  }
+  
+  
+// getRandomWordFromFile("words4.txt");
+let randomWord = "geode";
+switch (len) {
+    case 4:
+        randomWord = getRandomWordFromFile("words4.txt");
+        break;
+    case 5:
+        randomWord = getRandomWordFromFile("words5.txt");
+        break;
+    case 6:
+        randomWord = getRandomWordFromFile("words6.txt");
+        break;
+    case 7:
+        randomWord = getRandomWordFromFile("words7.txt");
+        break;
+    case 8:
+        randomWord = getRandomWordFromFile("words8.txt");
+        break;
+    default:
+        console.log("Invalid file for the given length.");
+        break;
+}
+
+console.log(randomWord)

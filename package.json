@@ -1,6 +1,23 @@
 {
-    "type": "module",
-    "dependencies": {
-        "express": "^4.18.3"
-    }
+  "name": "wordle",
+  "version": "1.0.0",
+  "description": "basicwordle",
+  "main": "main.js",
+  "scripts": {
+    "test": "ping",
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NathanLord/wordle.git"
+  },
+  "author": "dabois",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NathanLord/wordle/issues"
+  },
+  "homepage": "https://github.com/NathanLord/wordle#readme",
+  "devDependencies": {
+    "electron": "^29.1.5"
+  }
 }

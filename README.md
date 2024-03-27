@@ -1,6 +1,6 @@
 # wordle
 Wordle clone with changing word length option for varying points
-8=====================================D
+
 
 # wordle with friends
 
@@ -11,9 +11,7 @@ Wordle clone with changing word length option for varying points
 
 
 # TODO
- - database of words with different lengths
- - **Make basic wordle**
- - Different length of word option (points responding to longer length worth)
- - Add users database
+ - Add users database for multiplayer(when we get there)
+ - No longer use node, use base JS to read dictionary and make seperate files based on words length
  - 
  - 

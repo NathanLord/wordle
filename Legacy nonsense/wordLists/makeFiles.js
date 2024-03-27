@@ -1,4 +1,4 @@
-
+// TODO: No longer use node, use base JS to read dictionary and make seperate files based on words length
 // For reading text file
 const fs = require('fs');
 
@@ -24,7 +24,7 @@ const dictionary = readDictionaryFromFile(dictionaryFilePath);
 
 // TODO Make seperate word length text files
 for(let i = 4; i<9; i++){
-    const wordsOfLength = dictionary.filter(word => word.length === i);
+    const wordsOfLength = dictionary.filter(word => word.length === i && /^[a-z]+$/.test(word));
     const fileName = `./words${i}.txt`;
     fs.writeFileSync(fileName, wordsOfLength.join('\n'));
 }
