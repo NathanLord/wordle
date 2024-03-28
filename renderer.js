@@ -3,7 +3,7 @@ const allwords = document.getElementById("gameArea");
 //const fs = require('fs');
 
 document.addEventListener("keydown", keyPress);
-document.getElementById("balls").onchange = changeWordLength;
+document.getElementById("inputVal").onchange = changeWordLength;
 
 const letterPlaceholder = document.getElementById("letterPlaceholder");
 
@@ -16,7 +16,7 @@ var canType = true;
 
 // Reactive display for length of word
 function changeWordLength() {
-    var len = document.getElementById("balls").value;
+    var len = document.getElementById("inputVal").value;
     wordLength = len;
     if (len > 8) len = 8;
     if (len < 4) len = 4;
@@ -55,7 +55,36 @@ function win() {
         //dont let them move to the next row
         canType = false;
         //display congrats
+        var congratsMessage = document.createElement('div');
+        congratsMessage.textContent = "Congrats!";
+        congratsMessage.style.fontFamily = "'Helvetica', 'Gotham', 'Arial'";
+        congratsMessage.style.position = "absolute";
+        congratsMessage.style.bottom = "0"; // Start at the bottom of the game area
+        congratsMessage.style.left = "50%";
+        congratsMessage.style.transform = "translateX(-50%)";
+        congratsMessage.style.fontSize = "4vw"; // Adjust font size relative 
+        congratsMessage.style.color = "white"; 
+        congratsMessage.style.opacity = "0"; // Initially invisible
+        congratsMessage.style.transition = "opacity 1s ease-in, bottom 1s ease-out"; // Transition for gradual appearance 
+        document.getElementById("gameArea").appendChild(congratsMessage);
+
+        // Make it appear slowly 
+        setTimeout(function() {
+            congratsMessage.style.opacity = "1"; // Make the message visible
+            congratsMessage.style.bottom = "5%"; // Move it upwards
+        }, 100);
+
+        // Remove the congrats message 
+        setTimeout(function() {
+            document.getElementById("gameArea").removeChild(congratsMessage);
+        }, 3000);
+
+
         //TODO: share score with friends maybe
+
+
+        // Set background animations
+        triggerFireworks();
         
 }
 
@@ -130,3 +159,118 @@ function readDictionaryFromFile(filePath) {
 
 
 // END: GETTING RANDOM WORD FROM FILE ----------------------------
+
+
+// ! Firework Function https://www.jsdelivr.com/package/npm/particlesjs 
+function triggerFireworks() {
+    particlesJS('fireworks', {
+        "particles": {
+            "number": {
+                "value": 80,
+                "density": {
+                    "enable": true,
+                    "value_area": 800
+                }
+            },
+            "color": {
+                "value": "#ffffff"
+            },
+            "shape": {
+                "type": "circle",
+                "stroke": {
+                    "width": 0,
+                    "color": "#000000"
+                },
+                "polygon": {
+                    "nb_sides": 5
+                },
+                "image": {
+                    "src": "img/github.svg",
+                    "width": 100,
+                    "height": 100
+                }
+            },
+            "opacity": {
+                "value": 0.5,
+                "random": false,
+                "anim": {
+                    "enable": false,
+                    "speed": 1,
+                    "opacity_min": 0.1,
+                    "sync": false
+                }
+            },
+            "size": {
+                "value": 3,
+                "random": true,
+                "anim": {
+                    "enable": false,
+                    "speed": 40,
+                    "size_min": 0.1,
+                    "sync": false
+                }
+            },
+            "line_linked": {
+                "enable": true,
+                "distance": 150,
+                "color": "#ffffff",
+                "opacity": 0.4,
+                "width": 1
+            },
+            "move": {
+                "enable": true,
+                "speed": 6,
+                "direction": "none",
+                "random": false,
+                "straight": false,
+                "out_mode": "out",
+                "bounce": false,
+                "attract": {
+                    "enable": false,
+                    "rotateX": 600,
+                    "rotateY": 1200
+                }
+            }
+        },
+        "interactivity": {
+            "detect_on": "canvas",
+            "events": {
+                "onhover": {
+                    "enable": false,
+                    "mode": "repulse"
+                },
+                "onclick": {
+                    "enable": false,
+                    "mode": "push"
+                },
+                "resize": true
+            },
+            "modes": {
+                "grab": {
+                    "distance": 400,
+                    "line_linked": {
+                        "opacity": 1
+                    }
+                },
+                "bubble": {
+                    "distance": 400,
+                    "size": 40,
+                    "duration": 2,
+                    "opacity": 8,
+                    "speed": 3
+                },
+                "repulse": {
+                    "distance": 200,
+                    "duration": 0.4
+                },
+                "push": {
+                    "particles_nb": 4
+                },
+                "remove": {
+                    "particles_nb": 2
+                }
+            }
+        },
+        "retina_detect": true
+    });
+}

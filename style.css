@@ -1,35 +1,89 @@
+/* PlaceHolder */
 .placeholder {
     display: none;
     visibility: hidden;
 }
-.word {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-    grid-gap: 0px;
+
+/* Body */
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center content horizontally */
+    height: 100vh; /* Full viewport height */
+    background-color: #161748; 
+    color: #e5eaf5; 
+    margin: 0; 
+    overflow: hidden; /* Prevent scrolling */
 }
-.letter {
-    
-    border: 3px solid lightgrey;
-    border-radius:5px;
-    height: 100px;
-    width: 100px;
-    max-width: 100px;
-    min-height: 100px;
-    margin: 10px;
-    overflow: hidden;
-    background-color:brown;
-    font-size: 40px;
+
+/* Instructions setting */
+.content {
+    text-align: center; /* Center the content */
+    margin-bottom: 20px; 
     font-family: 'Helvetica', 'Gotham', 'Arial';
-    text-align:center;
-    text-transform:capitalize;
-    line-height: 90px; /* no idea why this vertically centers it :( */
+    font-size: 36px; 
+}
+
+/* For button */
+#inputVal {
+    padding: 10px; 
+    border: 5px solid #161748; 
+    border-radius: 20px; 
+    font-size: 16px; 
+}
+
+/* Hover and Focus styles */
+#inputVal:hover,
+#inputVal:focus {
+    border-color: #e5eaf5; /* Change border color on hover and when on it */
+    outline: none; 
+}
+
+
+/*-----------*/
+/* Game area */
+.gameContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center game area horizontally */
 }
 
 #gameArea {
-    display: flex;
-    flex-direction: column;
-    width: 100px; 
-    height: 100px;
-    border: 1px solid black;
+    border: none; /* Remove border */
+    margin-bottom: 20px;
 }
+
+.word {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    gap: 5px;
+}
+
+.letter {
+    width: 100px; /* Fixed width */
+    flex: 1;
+    border: 3px solid lightgrey;
+    border-radius: 5px;
+    height: 100px;
+    max-width: 100px;
+    margin: 5px;
+    overflow: hidden;
+    background-color: #161748;
+    font-size: 40px;
+    font-family: 'Helvetica', 'Gotham', 'Arial';
+    text-align: center;
+    text-transform: capitalize;
+    line-height: 100px; /* vertically centers it */
+}
+
+
+#fireworks {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Send fireworks to the background */
+}
+
 

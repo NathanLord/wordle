@@ -15,26 +15,35 @@
 <span class="letter placeholder" id="letterPlaceholder"></span>
 <!--PLACEHOLDER-->
 <body>
-    <!--- I will text if done soon---> 
-    <p>Guess the word in 5 guesses. Grey means letter is not in word. Green means letter is in correct spot. Yellow means there is the right letter</p>
-    <p>How many letters would you like the word to be? Has to be between 4 and 8</p>
-    <input type="number" min="4" max="8" id="balls">
 
-    <div id="gameArea">
-        <div class="word"> 
-        </div>
-        <div class="word">
-        </div>
-        <div class="word">
-        </div>
-        <div class="word">
-        </div>
-        <div class="word">
-        </div>
-        
+
+    <!--- Center for instructions and button ---> 
+    <div class="content">
+        <p>Guess the word in 5 guesses. Grey means letter is not in word. Green means letter is in correct spot. Yellow means there is the right letter</p>
+        <p>How many letters would you like the word to be? Has to be between 4 and 8</p>
+        <input type="number" id="inputVal" min="4" max="8" >
     </div>
-    <div>
+
+
+    <div class="gameContainer">
+        <div id="gameArea">
+            <div class="word"> 
+            </div>
+            <div class="word">
+            </div>
+            <div class="word">
+            </div>
+            <div class="word">
+            </div>
+            <div class="word">
+            </div>
+        </div>
     </div>
+
+    <div id="fireworks"></div>
+    
     <script src="./renderer.js"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>  <!-- https://www.jsdelivr.com/package/npm/particlesjs -->
+
 </body>
 </html>
