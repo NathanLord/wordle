@@ -24,4 +24,3 @@ Wordle clone with changing word length option for varying points
  - clone this repo
  - in the projects directory do `npm i` to install all dependecies
  - use `npm start` to run the project (run this whenever you want to start the application)
- - 
