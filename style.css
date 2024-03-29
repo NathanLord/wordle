@@ -11,9 +11,9 @@ body {
     align-items: center; /* Center content horizontally */
     height: 100vh; /* Full viewport height */
     background-color: #161748; 
-    color: #e5eaf5; 
+    color: #e5eaf5;
     margin: 0; 
-    overflow: hidden; /* Prevent scrolling */
+    overflow: visible; /* Prevent scrolling */
 }
 
 /* Instructions setting */
@@ -86,4 +86,11 @@ body {
     z-index: -1; /* Send fireworks to the background */
 }
 
+
+#congratsArea {
+    position: relative; /* Ensure the parent container has position: relative */
+    border: none; /* Remove border */
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
 

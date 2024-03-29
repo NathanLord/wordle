@@ -15,3 +15,7 @@ Wordle clone with changing word length option for varying points
  - No longer use node, use base JS to read dictionary and make seperate files based on words length
  - 
  - 
+
+ # problems
+ - end of correct word doesnt send win()
+ - multiple of the same letter shouldnt appear as multiple yellow(idk jonah idea)

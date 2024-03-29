@@ -9,22 +9,41 @@ const letterPlaceholder = document.getElementById("letterPlaceholder");
 
 var currentAttempts = 0; // this will let us know what row to input a given letter
 var currentLetter = 0; // this will tell us where the next inputted letter goes
-const maxAttempts = 5;
+const maxAttempts = 5; // max guesses
 var wordLength = 5;
 var answer = "geode";
 var canType = true;
 
 // Reactive display for length of word
 function changeWordLength() {
-    var len = document.getElementById("inputVal").value;
+    var lenInput = document.getElementById("inputVal")
+    var len = lenInput.value;
     wordLength = len;
     if (len > 8) len = 8;
     if (len < 4) len = 4;
+    
+    // Request a new word with this length
+    window.api.send("request-random-word", len);
+
+    // Disable length selector after pressing enter
+    /*
+    var handleKeyPress = function(event){
+        // Check if enter is pressed which is 13
+        if (event.keyCode === 13){
+            event.preventDefault();
+            lenInput.disable = true; // Disable from more input
+            canType = false; // No longer can type
+            len.Input.removeEventListener("keydown", handleKeyPress); // remove from listening 
+        }
+    };
+
+    lenInput.addEventListener("keydown", handleKeyPress);
+    */
 
     //TODO: set random word to main.js/getrandomwordoflength(len)
 
     // insert all the character input boxes
-    for(var i = 0; i < 5; i++) {
+    for(var i = 0; i < maxAttempts; i++) { // 5 guesses
         var parent = allwords.children[i];
         parent.innerHTML = ""; // remove all children
         for(var j = 0; j < len; j++) { // this can be fixed by copying the whole row after doing 1
@@ -52,39 +71,33 @@ function concatIntoWord(listOfLetters) {
 }
 function win() {
     // things to do if win
-        //dont let them move to the next row
-        canType = false;
-        //display congrats
-        var congratsMessage = document.createElement('div');
-        congratsMessage.textContent = "Congrats!";
-        congratsMessage.style.fontFamily = "'Helvetica', 'Gotham', 'Arial'";
-        congratsMessage.style.position = "absolute";
-        congratsMessage.style.bottom = "0"; // Start at the bottom of the game area
-        congratsMessage.style.left = "50%";
-        congratsMessage.style.transform = "translateX(-50%)";
-        congratsMessage.style.fontSize = "4vw"; // Adjust font size relative 
-        congratsMessage.style.color = "white"; 
-        congratsMessage.style.opacity = "0"; // Initially invisible
-        congratsMessage.style.transition = "opacity 1s ease-in, bottom 1s ease-out"; // Transition for gradual appearance 
-        document.getElementById("gameArea").appendChild(congratsMessage);
+    //dont let them move to the next row
+    canType = false;
+    //display congrats message that fades out
+    var congratsMessage = document.getElementById("congratsArea");
+    congratsMessage.style.opacity = "1";// Initially visible
+    congratsMessage.textContent = "Congrats!";
+    congratsMessage.style.fontFamily = "'Helvetica', 'Gotham', 'Arial'";
+    congratsMessage.style.fontSize = "4vw"; // Adjust font size relative 
+    congratsMessage.style.color = "white"; 
+    congratsMessage.style.transition = "opacity 1s ease-in"; // Transition for gradual appearance 
 
-        // Make it appear slowly 
-        setTimeout(function() {
-            congratsMessage.style.opacity = "1"; // Make the message visible
-            congratsMessage.style.bottom = "5%"; // Move it upwards
-        }, 100);
+    // Make it appear slowly 
+    setTimeout(function() {
+        congratsMessage.style.opacity = "0"; // fades out
+    }, 1000);
 
-        // Remove the congrats message 
-        setTimeout(function() {
-            document.getElementById("gameArea").removeChild(congratsMessage);
-        }, 3000);
+    // Remove the congrats message 
+    setTimeout(function() {
+        congratsMessage.style.display = "none"; // is removed
+    }, 3000);
 
 
-        //TODO: share score with friends maybe
+    //TODO: share score with friends maybe
 
 
-        // Set background animations
-        triggerFireworks();
+    // Set background animations
+    triggerFireworks();
         
 }
 
@@ -99,6 +112,7 @@ function checkWord(word) { // check and update each letter based on if its in th
             allLetters[i].style.backgroundColor = "grey";
         }
     }
+    console.log("word is " + word + " asnwer is " + answer);
     if (word == answer) {
         win();
     }
@@ -118,6 +132,7 @@ function keyPress(e) {
     if (theKey == "Enter") { // submit all letters as a word guess
         if (currentLetter == wordLength) {
             // concatonate all the letters and submit it
+            console.log("YO PRESSED ENTERS ")
             submitWord(concatIntoWord(allwords.children[currentAttempts]));
         }
         return;
@@ -140,22 +155,13 @@ function isTypableKey(key) {
     return (key >= 'A' && key <= 'Z') || (key >= 'a' && key <= 'z');
 }
 
-// START: GETTING RANDOM WORD FROM FILE ----------------------------
-function getRandomWord(wordLength) {
-    const dictionary = readDictionaryFromFile(`./wordLists/words${wordLength}`);
+// EVENT called from main to use a new random word
 
-    var ran = Math.random();
-    return dictionary[1]; // TODO
-}
-function readDictionaryFromFile(filePath) {
-    try {
-        const data = fs.readFileSync(filePath, 'utf8');
-        return data.trim().split('\n');
-    } catch (err) {
-        console.error('Error reading dictionary file:', err);
-        return [];
-    }
-}
+window.api.receive('set-answer', (newWord) => {
+    answer = newWord;
+    console.log("new word is " + answer);
+});
+
 
 
 // END: GETTING RANDOM WORD FROM FILE ----------------------------
@@ -219,7 +225,7 @@ function triggerFireworks() {
             },
             "move": {
                 "enable": true,
-                "speed": 6,
+                "speed": 3,
                 "direction": "none",
                 "random": false,
                 "straight": false,
