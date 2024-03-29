@@ -57,6 +57,21 @@ function concatIntoWord(listOfLetters) {
     }
     return word;
 }
+
+// Event listener for restart button
+document.getElementById("restartButton").addEventListener("click", function() {
+    // Reset the game state
+    currentAttempts = 0; 
+    currentLetter = 0;
+    canType = true;
+
+    // Allow lenght to be changed agian 
+    document.getElementById("inputVal").disabled = false;
+
+    // Hide the button after being pressed
+    document.getElementById("restartButton").style.display = "none"; 
+});
+
 function win() {
     // things to do if win
     //dont let them move to the next row
@@ -86,6 +101,9 @@ function win() {
 
     // Set background animations
     triggerFireworks();
+
+    // Button appear 
+    document.getElementById("restartButton").style.display = "block";
         
 }
 

@@ -23,6 +23,6 @@ Wordle clone with changing word length option for varying points
  # problems
  - end of correct word doesnt send win()
  - multiple of the same letter shouldnt appear as multiple yellow(idk jonah idea)
- - TODO make some sort of bind to the input val so once first word is entered no longer change input value
+ - 
 
 
