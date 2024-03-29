@@ -12,7 +12,7 @@ var currentLetter = 0; // this will tell us where the next inputted letter goes
 const maxAttempts = 5; // max guesses
 var wordLength = 5;
 var answer = "geode";
-var canType = true;
+var canType = false;
 
 // Reactive display for length of word
 function changeWordLength() {
@@ -22,6 +22,7 @@ function changeWordLength() {
     if (len > 8) len = 8;
     if (len < 4) len = 4;
     
+    canType = true; // everytime you generate a new word allow the user to type
     // Request a new word with this length
     window.api.send("request-random-word", len);
 
@@ -112,8 +113,7 @@ function checkWord(word) { // check and update each letter based on if its in th
             allLetters[i].style.backgroundColor = "grey";
         }
     }
-    console.log("word is " + word + " asnwer is " + answer);
-    if (word == answer) {
+    if (word === answer) { // old bug, have to trim() the end of both word and answer even if they look equal
         win();
     }
 }
@@ -133,7 +133,7 @@ function keyPress(e) {
         if (currentLetter == wordLength) {
             // concatonate all the letters and submit it
             console.log("YO PRESSED ENTERS ")
-            submitWord(concatIntoWord(allwords.children[currentAttempts]));
+            submitWord(concatIntoWord(allwords.children[currentAttempts]).trim());
         }
         return;
     }
@@ -158,7 +158,7 @@ function isTypableKey(key) {
 // EVENT called from main to use a new random word
 
 window.api.receive('set-answer', (newWord) => {
-    answer = newWord;
+    answer = newWord.trim();
     console.log("new word is " + answer);
 });
 
