@@ -19,3 +19,9 @@ Wordle clone with changing word length option for varying points
  # problems
  - end of correct word doesnt send win()
  - multiple of the same letter shouldnt appear as multiple yellow(idk jonah idea)
+
+# How To install
+ - clone this repo
+ - in the projects directory do `npm i` to install all dependecies
+ - use `npm start` to run the project (run this whenever you want to start the application)
+ - 
