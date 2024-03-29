@@ -27,10 +27,12 @@ function changeWordLength() {
     window.api.send("request-random-word", len);
 
     // Disable length selector after pressing enter
+    // TODO make some sort of bind to the input val so once first word is entered no longer change input value
     /*
     var handleKeyPress = function(event){
         // Check if enter is pressed which is 13
         if (event.keyCode === 13){
+            console.log("Inside enter part")
             event.preventDefault();
             lenInput.disable = true; // Disable from more input
             canType = false; // No longer can type
