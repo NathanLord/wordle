@@ -14,6 +14,7 @@ var wordLength = 5;
 var answer = "geode";
 var canType = false;
 
+
 // Reactive display for length of word
 function changeWordLength() {
     var lenInput = document.getElementById("inputVal")
@@ -26,22 +27,6 @@ function changeWordLength() {
     // Request a new word with this length
     window.api.send("request-random-word", len);
 
-    // Disable length selector after pressing enter
-    // TODO make some sort of bind to the input val so once first word is entered no longer change input value
-    /*
-    var handleKeyPress = function(event){
-        // Check if enter is pressed which is 13
-        if (event.keyCode === 13){
-            console.log("Inside enter part")
-            event.preventDefault();
-            lenInput.disable = true; // Disable from more input
-            canType = false; // No longer can type
-            len.Input.removeEventListener("keydown", handleKeyPress); // remove from listening 
-        }
-    };
-
-    lenInput.addEventListener("keydown", handleKeyPress);
-    */
 
     //TODO: set random word to main.js/getrandomwordoflength(len)
 
@@ -136,6 +121,7 @@ function keyPress(e) {
             // concatonate all the letters and submit it
             console.log("YO PRESSED ENTERS ")
             submitWord(concatIntoWord(allwords.children[currentAttempts]).trim());
+            document.getElementById("inputVal").disabled = true; // Disable input length after first attempt is made
         }
         return;
     }
