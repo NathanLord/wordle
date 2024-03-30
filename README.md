@@ -26,3 +26,8 @@ Wordle clone with changing word length option for varying points
  - 
 
 
+
+# Word list
+
+5 letter words
+https://gist.github.com/cfreshman/a03ef2cba789d8cf00c08f767e0fad7b
