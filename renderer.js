@@ -68,9 +68,14 @@ document.getElementById("restartButton").addEventListener("click", function() {
 
     // Empty previous letters
     changeWordLength();
-
-    // Allow lenght to be changed agian 
+    // Allow length to be changed again 
     document.getElementById("inputVal").disabled = false;
+
+    // Get rid of fireworks
+    var fireworksCanvas = document.getElementById('fireworks');
+    if (fireworksCanvas) {
+        fireworksCanvas.parentNode.removeChild(fireworksCanvas);
+    }
 
     // Hide the button after being pressed
     document.getElementById("restartButton").style.display = "none"; 
@@ -179,6 +184,15 @@ window.api.receive('set-answer', (newWord) => {
 
 // ! Firework Function https://www.jsdelivr.com/package/npm/particlesjs 
 function triggerFireworks() {
+    // Check if fireworks canvas already exists
+    var fireworksCanvas = document.getElementById('fireworks');
+    if (!fireworksCanvas) {
+        // If not, create a new canvas
+        fireworksCanvas = document.createElement('div');
+        fireworksCanvas.id = 'fireworks';
+        document.body.appendChild(fireworksCanvas);
+    }
+
     particlesJS('fireworks', {
         "particles": {
             "number": {
