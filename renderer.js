@@ -136,6 +136,11 @@ function submitWord(word) {
     checkWord(word);
     currentAttempts++;
     currentLetter = 0;
+
+    // Reset button appears after last attempt
+    if(currentAttempts == 5){
+        document.getElementById("restartButton").style.display = "block";
+    }
 }
 
 function keyPress(e) {
