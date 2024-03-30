@@ -59,11 +59,15 @@ function concatIntoWord(listOfLetters) {
 }
 
 // Event listener for restart button
+// TODO: Check to cover all possibilities
 document.getElementById("restartButton").addEventListener("click", function() {
     // Reset the game state
     currentAttempts = 0; 
     currentLetter = 0;
     canType = true;
+
+    // Empty previous letters
+    changeWordLength();
 
     // Allow lenght to be changed agian 
     document.getElementById("inputVal").disabled = false;
