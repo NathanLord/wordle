@@ -15,7 +15,7 @@ function readDictionaryFromFile(filePath) {
 
 
 // Text file and length 
-const dictionaryFilePath = 'dictionary.txt'; // Path to your dictionary text file
+const dictionaryFilePath = 'wordListNew.txt'; // Path to your dictionary text file
 
 
 // Read dictionary from file
