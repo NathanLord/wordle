@@ -14,6 +14,32 @@ var wordLength = 5;
 var answer = "geode";
 var canType = false;
 
+// Event listener for restart button
+// TODO: Check to cover all possibilities
+document.getElementById("restartButton").addEventListener("click", restart);
+
+function restart() {
+    // Reset the game state
+    currentAttempts = 0;
+    currentLetter = 0;
+    canType = true;
+
+    // Empty previous letters
+    changeWordLength();
+    // Allow length to be changed again
+    document.getElementById("inputVal").disabled = false;
+
+    // Get rid of fireworks
+    var fireworksCanvas = document.getElementById('fireworks');
+    if (fireworksCanvas) {
+        fireworksCanvas.parentNode.removeChild(fireworksCanvas);
+    }
+
+    // Hide the button after being pressed
+    document.getElementById("restartButton").style.display = "none"; 
+    document.getElementById("revealParagraph").style.display = "none"; 
+
+}
 
 // Reactive display for length of word
 function changeWordLength() {
@@ -58,29 +84,6 @@ function concatIntoWord(listOfLetters) {
     return word;
 }
 
-// Event listener for restart button
-// TODO: Check to cover all possibilities
-document.getElementById("restartButton").addEventListener("click", function() {
-    // Reset the game state
-    currentAttempts = 0; 
-    currentLetter = 0;
-    canType = true;
-
-    // Empty previous letters
-    changeWordLength();
-    // Allow length to be changed again 
-    document.getElementById("inputVal").disabled = false;
-
-    // Get rid of fireworks
-    var fireworksCanvas = document.getElementById('fireworks');
-    if (fireworksCanvas) {
-        fireworksCanvas.parentNode.removeChild(fireworksCanvas);
-    }
-
-    // Hide the button after being pressed
-    document.getElementById("restartButton").style.display = "none"; 
-});
-
 function win() {
     // things to do if win
     //dont let them move to the next row
@@ -111,9 +114,14 @@ function win() {
     // Set background animations
     triggerFireworks();
 
-    // Button appear 
+    // Button appear
     document.getElementById("restartButton").style.display = "block";
-        
+    document.getElementById("revealParagraph").style.display = "block";
+}
+
+function lose() {
+    document.getElementById("revealParagraph").style.display = "block";
+    document.getElementById("restartButton").style.display = "block";
 }
 
 function checkWord(word) { // check and update each letter based on if its in the word and/or in the correct order
@@ -138,8 +146,8 @@ function submitWord(word) {
     currentLetter = 0;
 
     // Reset button appears after last attempt
-    if(currentAttempts == 5){
-        document.getElementById("restartButton").style.display = "block";
+    if(currentAttempts >= maxAttempts){
+        lose();
     }
 }
 
@@ -151,7 +159,6 @@ function keyPress(e) {
     if (theKey == "Enter") { // submit all letters as a word guess
         if (currentLetter == wordLength) {
             // concatonate all the letters and submit it
-            console.log("YO PRESSED ENTERS ")
             submitWord(concatIntoWord(allwords.children[currentAttempts]).trim());
             document.getElementById("inputVal").disabled = true; // Disable input length after first attempt is made
         }
@@ -179,6 +186,7 @@ function isTypableKey(key) {
 
 window.api.receive('set-answer', (newWord) => {
     answer = newWord.trim();
+    document.getElementById("answerReveal").innerHTML = answer;
     console.log("new word is " + answer);
 });
 
