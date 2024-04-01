@@ -8,26 +8,4 @@ Wordle clone with changing word length option for varying points
  # How To Run
  - run `npm start` in the project directory
 
-# wordle with friends
- - Add tag team componenet to word
- - Chat for teams
-    - if one player has a guess, allow other user to accept or decline guess
- - Leaderboard
 
-# TODO
- - Add users database for multiplayer(when we get there)
- - 
- - 
- - 
-
- # problems
- - end of correct word doesnt send win()
- - multiple of the same letter shouldnt appear as multiple yellow(idk jonah idea)
- - 
-
-
-
-# Word list
-
-5 letter words
-https://gist.github.com/cfreshman/a03ef2cba789d8cf00c08f767e0fad7b
