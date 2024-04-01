@@ -9,3 +9,5 @@ Wordle clone with changing word length option for varying points
  - run `npm start` in the project directory
 
 
+# Demo
+![Wordle Demo](img/example1.png)
