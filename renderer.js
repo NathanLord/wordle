@@ -1,6 +1,5 @@
 //interacts with html
 const allwords = document.getElementById("gameArea");
-//const fs = require('fs');
 
 document.addEventListener("keydown", keyPress);
 document.getElementById("inputVal").onchange = changeWordLength;
@@ -15,7 +14,6 @@ var answer = "geode";
 var canType = false;
 
 // Event listener for restart button
-// TODO: Check to cover all possibilities
 document.getElementById("restartButton").addEventListener("click", restart);
 
 function restart() {
@@ -54,7 +52,6 @@ function changeWordLength() {
     window.api.send("request-random-word", len);
 
 
-    //TODO: set random word to main.js/getrandomwordoflength(len)
 
     // insert all the character input boxes
     for(var i = 0; i < maxAttempts; i++) { // 5 guesses
@@ -66,15 +63,8 @@ function changeWordLength() {
             parent.insertBefore(clone, parent.firstChild);
         }
     }
-    //TODO change the answer to be of that word length
 }
 
-
-
-//word validation to see if word user entered is in our dictionary
-function isInDictionary(word, dictionary) {
-    
-}
 
 function concatIntoWord(listOfLetters) {
     let word = "";
@@ -106,10 +96,6 @@ function win() {
     setTimeout(function() {
         congratsMessage.style.display = "none"; // is removed
     }, 3000);
-
-
-    //TODO: share score with friends maybe
-
 
     // Set background animations
     triggerFireworks();
@@ -183,7 +169,6 @@ function isTypableKey(key) {
 }
 
 // EVENT called from main to use a new random word
-
 window.api.receive('set-answer', (newWord) => {
     answer = newWord.trim();
     document.getElementById("answerReveal").innerHTML = answer;
@@ -192,7 +177,6 @@ window.api.receive('set-answer', (newWord) => {
 
 
 
-// END: GETTING RANDOM WORD FROM FILE ----------------------------
 
 
 // ! Firework Function https://www.jsdelivr.com/package/npm/particlesjs 
